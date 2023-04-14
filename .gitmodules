@@ -1,0 +1,3 @@
+[submodule "src/ascon/pyascon"]
+	path = src/ascon/pyascon
+	url = https://github.com/meichlseder/pyascon
