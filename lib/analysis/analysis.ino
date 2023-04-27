@@ -9,15 +9,14 @@
 void setup() {
   Serial.begin(9600);
 
-  // Get the product of three integers multiplied together.
-  // int result = permutation(36269,58741,73091);
-  int result = permutation(2,4,6);
-  Serial.println(result);
-
-  // Serial.print("LWC Arduino\n");
-  // Serial.print("-=-=-=-=-=-=-=-=-=-=-\n");
+  Serial.print("LWC Arduino\n");
+  Serial.print("-=-=-=-=-=-=-=-=-=-=-\n");
   // Serial.print("Ready for commands.\n");
   // Serial.print("*: Clears buffer.\n");
+
+  // Get the product of three integers multiplied together.
+  int result = LWC::sample(8, 10, 12);
+  Serial.println(result);
 }
 
 String buffer;
@@ -62,15 +61,15 @@ void instructions() {
       Serial.print("Decrypted");
       clearBuffer();
 
-      //      default:
-      //
-      //      case 'd':
-      //        Serial.print(">>");
+    default:
+
+    case 'd':
+      Serial.print("");
     }
     delay(1000);
   }
 }
 
 void loop() {
-  // instructions();
+  instructions();
 }

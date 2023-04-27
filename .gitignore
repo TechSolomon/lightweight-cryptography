@@ -67,3 +67,9 @@ yarn-debug.log*
 !/storage/.keep
 
 .DS_Store
+
+.vscode/
+
+.idea/
+
+cmake-build-debug/
