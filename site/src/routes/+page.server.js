@@ -9,7 +9,7 @@
 // const hmacDigest = Base64.stringify(hmacSHA512(path + hashDigest, privateKey));
 
 // https://kit.svelte.dev/docs/form-actions
-console.log("Hello, world.");
+// console.log("Hello, world.");
 
 // // /** @type {import('./$types').Actions} */
 // export const actions = {
