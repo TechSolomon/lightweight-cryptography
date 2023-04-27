@@ -186,54 +186,54 @@
      authMode = 2; // We have some auth data now.
  }
 
- void Ascon128::computeTag(void *tag, size_t len)
- {
-     // End authentication mode if there was no plaintext/ciphertext.
-     if (authMode)
-         endAuth();
+//  void Ascon128::computeTag(void *tag, size_t len)
+//  {
+//      // End authentication mode if there was no plaintext/ciphertext.
+//      if (authMode)
+//          endAuth();
 
-     // Pad the last block, add the original key, and permute the state.
-     ((uint8_t *)(state.S))[posn] ^= 0x80;
-     state.S[1] ^= state.K[0];
-     state.S[2] ^= state.K[1];
-     permute(0);
+//      // Pad the last block, add the original key, and permute the state.
+//      ((uint8_t *)(state.S))[posn] ^= 0x80;
+//      state.S[1] ^= state.K[0];
+//      state.S[2] ^= state.K[1];
+//      permute(0);
 
-     // Compute the tag and convert it into big-endian in the return buffer.
-     uint64_t T[2];
-     T[0] = htobe64(state.S[3] ^ state.K[0]);
-     T[1] = htobe64(state.S[4] ^ state.K[1]);
-     if (len > 16)
-         len = 16;
-     memcpy(tag, T, len);
-     clean(T);
- }
+//      // Compute the tag and convert it into big-endian in the return buffer.
+//      uint64_t T[2];
+//      T[0] = htobe64(state.S[3] ^ state.K[0]);
+//      T[1] = htobe64(state.S[4] ^ state.K[1]);
+//      if (len > 16)
+//          len = 16;
+//      memcpy(tag, T, len);
+//      clean(T);
+//  }
 
- bool Ascon128::checkTag(const void *tag, size_t len)
- {
-     // The tag can never match if it is larger than the maximum allowed size.
-     if (len > 16)
-         return false;
+//  bool Ascon128::checkTag(const void *tag, size_t len)
+//  {
+//      // The tag can never match if it is larger than the maximum allowed size.
+//      if (len > 16)
+//          return false;
 
-     // End authentication mode if there was no plaintext/ciphertext.
-     if (authMode)
-         endAuth();
+//      // End authentication mode if there was no plaintext/ciphertext.
+//      if (authMode)
+//          endAuth();
 
-     // Pad the last block, add the original key, and permute the state.
-     ((uint8_t *)(state.S))[posn] ^= 0x80;
-     state.S[1] ^= state.K[0];
-     state.S[2] ^= state.K[1];
-     permute(0);
+//      // Pad the last block, add the original key, and permute the state.
+//      ((uint8_t *)(state.S))[posn] ^= 0x80;
+//      state.S[1] ^= state.K[0];
+//      state.S[2] ^= state.K[1];
+//      permute(0);
 
-     // Compute the tag and convert it into big-endian.
-     uint64_t T[2];
-     T[0] = htobe64(state.S[3] ^ state.K[0]);
-     T[1] = htobe64(state.S[4] ^ state.K[1]);
-     if (len > 16)
-         len = 16;
-     bool ok = secure_compare(T, tag, len);
-     clean(T);
-     return ok;
- }
+//      // Compute the tag and convert it into big-endian.
+//      uint64_t T[2];
+//      T[0] = htobe64(state.S[3] ^ state.K[0]);
+//      T[1] = htobe64(state.S[4] ^ state.K[1]);
+//      if (len > 16)
+//          len = 16;
+//      bool ok = secure_compare(T, tag, len);
+//      clean(T);
+//      return ok;
+//  }
 
  void Ascon128::clear()
  {
